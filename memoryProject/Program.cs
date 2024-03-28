@@ -21,7 +21,7 @@ class RWData
 
         public char _perm { get; init; }
         public string _hex { get; init; }
-        public int physicalPageNumber { get; set; }
+        public int physicalPageNumber = -1;
         public override string ToString() => $"({_perm},{_hex})";
         public static bool operator ==(Data obj1, Data obj2)
         {
@@ -38,7 +38,7 @@ class RWData
 
     static void Main()
     {
-        string filepath = @"C:\Users\rayce\Downloads\real_tr.dat";
+        string filepath = @"C:\Users\willi\Downloads\real_tr.dat";
 
         int arraysize = File.ReadLines(filepath).Count();
 
@@ -60,7 +60,7 @@ class RWData
 
         printTraceConfig();
         printTraceData(virtualMemory);
-        leastReventUse(virtualMemory);
+        leastRecentUse(virtualMemory);
         greedy(virtualMemory);
         firstInFirstOut(virtualMemory);
     }
@@ -87,13 +87,87 @@ class RWData
         Console.WriteLine("Page size: 256");
         Console.WriteLine(" \n");
     }
-    private static void leastReventUse(Data[]virtualMemory)
+     static void leastRecentUse(Data[] virtualMemory)
     {
-        //todo
-        //we can print all output within the function, or change void to string and print as its called.
+        Console.WriteLine("LRU Algorithm:\n");
+        Console.WriteLine("Virtual Address\tVirtual Pg #\tPage Offset\tTable Result\tPhysical Page #");
+        Console.WriteLine("---------------|-------------|-------------|-------------|-----------------|");
+
+        int cacheSize = 20;
+        Data[] cache = new Data[cacheSize];
+        int[] accessTime = new int[cacheSize];
+        int totalHit = 0;
+        int totalMiss = 0;
+
+
+        int[] physicalPages = new int[cacheSize];
+        for (int i = 0; i < cacheSize; i++)
+        {
+            physicalPages[i] = i;
+        }
+
+        for (int index = 0; index < virtualMemory.Length; index++)
+        {
+            Data currentData = virtualMemory[index];
+            string stringData = currentData.ToString();
+            var last3 = Regex.Match(stringData, @"(.{4})\s*$");
+            string virtualAddressP = $"00000{last3}";
+            string virtualAddress = virtualAddressP.Replace(")", "");
+            char virtualPage = stringData[^4];
+            var pageOffsetPV = Regex.Match(stringData, @"(.{3})\s*$");
+            string pageOffsetP = pageOffsetPV.ToString();
+            string pageOffset = pageOffsetP.Replace(")", "");
+            bool inCache = false;
+            int cacheIndex = -1;
+
+            // Check if current data is in cache
+            for (int i = 0; i < cache.Length; i++)
+            {
+                if (cache[i]._hex == currentData._hex)
+                {
+                    inCache = true;
+                    cacheIndex = i;
+                    break;
+                }
+            }
+
+            if (inCache)
+            {
+                // Update access time of the page
+                accessTime[cacheIndex] = index;
+                totalHit++;
+            }
+            else
+            {
+                totalMiss++;
+
+                // Find the least recently used page in the cache
+                int leastUsedIndex = Array.IndexOf(accessTime, accessTime.Min());
+                cache[leastUsedIndex] = currentData;
+                accessTime[leastUsedIndex] = index;
+
+
+                int physicalPageNumber = physicalPages[leastUsedIndex];
+                Console.WriteLine($"{virtualAddress}\t\t{virtualPage}\t{pageOffset}\t\tmiss\t{physicalPageNumber}");
+
+
+                physicalPages[leastUsedIndex] = (index % cacheSize);
+            }
+
+            if (inCache)
+            {
+                Console.WriteLine($"{virtualAddress}\t\t{virtualPage}\t{pageOffset}\t\thit\t{physicalPages[cacheIndex]}");
+            }
+        }
+
+        Console.WriteLine("Simulation Statistics");
+        Console.WriteLine($"Total Hit: {totalHit}");
+        Console.WriteLine($"Total Miss: {totalMiss}");
+        double hitRatio = totalMiss != 0 ? (double)totalHit / totalMiss : 0;
+        Console.WriteLine($"Hit Ratio: {hitRatio}");
     }
 
-private static void greedy(Data[] virtualMemory)
+    private static void greedy(Data[] virtualMemory)
 {
     // delcare a variable that you will use to increment 
     int i = 0; // I use this for the while loop
@@ -229,7 +303,7 @@ private static void greedy(Data[] virtualMemory)
     //we can print all output within the function, or change void to string and print as its called.
 
 }
-}
+
 
   static void firstInFirstOut(Data[] virtualMemory)
     {
@@ -294,5 +368,6 @@ private static void greedy(Data[] virtualMemory)
         double hitRatio = totalMiss != 0 ? (double)totalHit / totalMiss : 0;
         Console.WriteLine($"Hit Ratio: {hitRatio}");
     }
+
 
 }

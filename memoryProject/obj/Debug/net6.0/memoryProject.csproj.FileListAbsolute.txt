@@ -13,3 +13,17 @@ C:\Users\rayce\OneDrive\Desktop\Coding\memoryProject\obj\Debug\net6.0\refint\mem
 C:\Users\rayce\OneDrive\Desktop\Coding\memoryProject\obj\Debug\net6.0\memoryProject.pdb
 C:\Users\rayce\OneDrive\Desktop\Coding\memoryProject\obj\Debug\net6.0\memoryProject.genruntimeconfig.cache
 C:\Users\rayce\OneDrive\Desktop\Coding\memoryProject\obj\Debug\net6.0\ref\memoryProject.dll
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\bin\Debug\net6.0\memoryProject.exe
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\bin\Debug\net6.0\memoryProject.deps.json
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\bin\Debug\net6.0\memoryProject.runtimeconfig.json
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\bin\Debug\net6.0\memoryProject.dll
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\bin\Debug\net6.0\memoryProject.pdb
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.AssemblyInfoInputs.cache
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.AssemblyInfo.cs
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.csproj.CoreCompileInputs.cache
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.dll
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\refint\memoryProject.dll
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.pdb
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\memoryProject.genruntimeconfig.cache
+C:\Users\willi\OneDrive\Desktop\Algorithims\project\memoryProject\obj\Debug\net6.0\ref\memoryProject.dll
